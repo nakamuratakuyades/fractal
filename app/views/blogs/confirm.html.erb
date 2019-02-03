@@ -1,21 +1,18 @@
-<h3>以下の内容で、送信する。</h3>
-
-<table class="table table-striped">
-<%= form_with(model: @blog, url: blogs_path, local: true) do |form| %>
-  <%= form.hidden_field :title %>
-  <%= form.hidden_field :content %>
-  <tr>
-    <th>タイトル</th><th><%= @blog.title %></th>
-  </tr>
-  <tr>
-    <th>本文</th><th><%= @blog.content %></th>
-  </tr>
-  </table>
-  <button class="btn" type="submit">登録する</button><p>
-<% end %>
-
-<%= form_with(model: @blog, url: new_blog_path, local: true, method: 'get') do |form| %>
-  <%= form.hidden_field :title %>
-  <%= form.hidden_field :content %>
-  <button class="btn" type="submit" name="back" >もどる</button>
-<% end %>
+<div class="main blogs-new">
+  <div class="container">
+    <h1 class="form-heading">思い残すことはない？</h1>
+      <div class="form">
+        <div class="form-body">
+          <%= form_with(model: @blog, url: blogs_path, local: true) do |form| %>
+            <%= form.hidden_field :title %>
+            <%= form.hidden_field :content %>
+            <%= form.label :title %><%= @blog.title %>
+            <%= form.label :content %><th><%= @blog.content %><p>
+            <p>
+            <button class="btn" type="submit">登録する</button>
+            <button class="btn" type="submit" name="back" >もどる</button>
+          <% end %>
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,28 +1,26 @@
-<%= form_with(model: @blog, local: true ,url: choose_new_or_edit ) do |form| %>
-  <% if @blog.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
-      <ul>
-
-      <% @blog.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-<table class="table table-striped">
-  <div class="blog_title">
-    <tr>
-      <th><%= form.label :title %></th><th><%= form.text_field :title %></th>
-    </tr>
+<div class="main blogs-new">
+  <div class="container">
+    <h1 class="form-heading">解放する</h1>
+    <%= form_tag("/blogs/confirm") do %>
+      <div class="form">
+        <div class="form-body">
+          <%= form_with(model: @blog, local: true ,url: choose_new_or_edit ) do |form| %>
+            <% if @blog.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
+                <ul>
+                <% @blog.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+          <%= form.label :title %><%= form.text_field :title %>
+          <%= form.label :content %><th><%= form.text_field :content %>
+        </div>
+        <button class="btn" type="submit">解放する</button>
+      </div>
+    <% end %>
   </div>
-
-  <div class="blog_title">
-    <tr>
-      <th><%= form.label :content %></th><th><%= form.text_field :content %></th>
-    </tr>
-  </div>
-  </table>
-  <button class="btn" type="submit">登録する</button>
+</div>
 <% end %>

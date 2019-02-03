@@ -1,16 +1,19 @@
-<h1>ブログ一覧</h1>
-
-<div class="container">
-  <ul class="row">
+<div class="main blogs-index">
+  <div class="container">
     <% @blogs.each do |blog| %>
-      <ul class="list-group">
-          <li class="col-xs-12 col-md-6">タイトル：<%= blog.title %><p><p>ユーザー：<%= blog.user.name %><p><p><%= link_to '詳細', blog_path(blog.id) %>
-            <% if blog.user_id == current_user.id %>
-              <%= link_to '編集', edit_blog_path(blog.id), data: { confirm: '本当に編集していいですか？' } %> <%= link_to '削除', blog_path(blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
-            <% end %>
-          </li>
+      <div class="blogs-index-item">
+        <div class="blog-left">
+        </div>
+        <div class="blog-right">
+          <div class="blog-user-name">
+            <%= link_to(blog.user.name, "/users/#{blog.user.id}") %>
+          </div>
+          <%= link_to(blog.content, "/blogs/#{blog.id}") %>
+        </div>
+        <% if blog.user_id == current_user.id %>
+          <%= link_to '編集', edit_blog_path(blog.id), data: { confirm: '本当に編集していいですか？' } %> <%= link_to '削除', blog_path(blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+        <% end %>
+      </div>
     <% end %>
-      </ul>
-  </ul>
-  <a class="btn active" href="blogs/new" role="button">新しくブログを投稿する</a>
+  </div>
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BlogApp</title>
+  <title>Fractal</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -18,18 +18,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/tops">BlogApp</a>
+          <a class="navbar-brand" href="/tops">Fractal</a>
         </div>
         <div id="gnavi" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
               <li><a href="/tops">トップページ</a></li>
-              <li><a href="/blogs">ブログ</a></li>
+              <li><a href="/blogs">一覧</a></li>
+              <li><a href="/blogs/new">ストレスを解放</a></li>
               <li><li><% if logged_in? %>
                 <%= link_to "プロフィール", user_path(current_user.id) %></li><li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
               <% else %>
                 <li><%= link_to "新規登録", new_user_path %></li><li><%= link_to "ログイン", new_session_path %></li>
               <% end %></li>
-              <li><a href="/contacts/new">お問い合わせ</a></li>
+              <!-- <li><a href="/contacts/new">お問い合わせ</a></li> -->
             </ul>
         </div>
       </div>
@@ -37,11 +38,35 @@
   </header>
 
 <%= yield %>
+</body>
 
   <footer>
-    <p>運営会社 BLOGAPP 株式会社</p>
-    <p>© 2018 Copyright BLOGAPP Corp.</p>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
+            <span class="sr-only">Bootstrap</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/tops">Fractal</a>
+        </div>
+        <div id="gnavi" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+              <li><a href="/tops">Copyright Fractal,inc</a></li>
+              <li><a href="/blogs">一覧</a></li>
+              <li><a href="/blogs/new">ストレスを解放</a></li>
+              <li><li><% if logged_in? %>
+                <%= link_to "プロフィール", user_path(current_user.id) %></li><li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+              <% else %>
+                <li><%= link_to "新規登録", new_user_path %></li><li><%= link_to "ログイン", new_session_path %></li>
+              <% end %></li>
+              <!-- <li><a href="/contacts/new">お問い合わせ</a></li> -->
+            </ul>
+        </div>
+      </div>
+    </nav>
   </footer>
 
-</body>
 </html>

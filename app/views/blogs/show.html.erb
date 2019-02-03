@@ -1,25 +1,28 @@
-<h1>ブログ詳細画面</h1>
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <h2><%= @user.name %></h2>
+    </div>
 
-<table class="table table-striped">
-  <tr>
-    <th>ユーザー名</th></th><th><%= @user.name %></th>
-  </tr>
-  <tr>
-    <th>タイトル</th><th><%= @blog.title %>
-  </tr>
-
-  <tr>
-    <th>内容</th></th><th><%= @blog.content %></th>
-  </tr>
-</table>
-
-<% unless @blog.user_id == current_user.id %>
-  <% if @favorite.present? %>
-    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
-    <%= link_to 'お気に入りする', favorites_path(blog_id: @blog.id), method: :post, class: 'btn btn-primary' %>
-  <% end %>
-<% end %>
-
-
-<a class="btn" href="/blogs" role="button">もどる</a>
+    <% @user.blogs.each do |blog| %>
+      <div class="blogs-index-item">
+        <div class="blog-left">
+        </div>
+        <div class="blog-right">
+          <div class="blog-user-name">
+            <%= link_to(blog.user.name, "/users/#{blog.user.id}") %>
+          </div>
+          <%= link_to(blog.content, "/blogs/#{blog.id}") %>
+        </div>
+      </div>
+    <% end %>
+    <% unless @blog.user_id == current_user.id %>
+      <% if @favorite.present? %>
+        <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to 'お気に入りする', favorites_path(blog_id: @blog.id), method: :blog, class: 'btn btn-primary' %>
+      <% end %>
+    <% end %>
+  </div>
+  <a class="btn" href="/blogs" role="button">もどる</a>
+</div>
